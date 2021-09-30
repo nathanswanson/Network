@@ -1,12 +1,9 @@
 package network.raknet;
 
-import lombok.experimental.UtilityClass;
-
 import java.net.Inet4Address;
 import java.net.Inet6Address;
 import java.net.InetSocketAddress;
 
-@UtilityClass
 public class RakNetConstants {
 
     public static final byte RAKNET_PROTOCOL_VERSION = 10; // Mojang's version.

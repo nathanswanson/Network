@@ -1,17 +1,15 @@
 package network.raknet;
 
 import network.common.NetworkUtils;
-import com.nukkitx.network.util.DisconnectReason;
+import network.common.util.DisconnectReason;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
 import io.netty.channel.EventLoop;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.net.InetSocketAddress;
 
 import static network.raknet.RakNetConstants.*;
 
-@ParametersAreNonnullByDefault
 public class RakNetServerSession extends RakNetSession {
     private final RakNetServer rakNet;
 
@@ -26,15 +24,9 @@ public class RakNetServerSession extends RakNetSession {
         short packetId = buffer.readUnsignedByte();
 
         switch (packetId) {
-            case ID_OPEN_CONNECTION_REQUEST_2:
-                this.onOpenConnectionRequest2(buffer);
-                break;
-            case ID_CONNECTION_REQUEST:
-                this.onConnectionRequest(buffer);
-                break;
-            case ID_NEW_INCOMING_CONNECTION:
-                this.onNewIncomingConnection();
-                break;
+            case ID_OPEN_CONNECTION_REQUEST_2 -> this.onOpenConnectionRequest2(buffer);
+            case ID_CONNECTION_REQUEST -> this.onConnectionRequest(buffer);
+            case ID_NEW_INCOMING_CONNECTION -> this.onNewIncomingConnection();
         }
     }
 
@@ -146,5 +138,15 @@ public class RakNetServerSession extends RakNetSession {
         buffer.writeLong(System.currentTimeMillis());
 
         this.send(buffer, RakNetPriority.IMMEDIATE, RakNetReliability.RELIABLE);
+    }
+
+    @Override
+    public void close(DisconnectReason reason) {
+
+    }
+
+    @Override
+    public void disconnect(DisconnectReason reason) {
+
     }
 }

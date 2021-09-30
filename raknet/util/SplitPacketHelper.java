@@ -1,14 +1,13 @@
-package com.nukkitx.network.raknet.util;
+package network.raknet.util;
 
 import network.raknet.EncapsulatedPacket;
 import network.raknet.RakNetSession;
-import com.nukkitx.network.util.Preconditions;
+import network.common.util.Preconditions;
 import io.netty.buffer.ByteBuf;
 import io.netty.util.AbstractReferenceCounted;
 import io.netty.util.ReferenceCountUtil;
 import io.netty.util.ReferenceCounted;
 
-import javax.annotation.Nullable;
 
 public class SplitPacketHelper extends AbstractReferenceCounted {
     private final EncapsulatedPacket[] packets;
@@ -19,7 +18,6 @@ public class SplitPacketHelper extends AbstractReferenceCounted {
         this.packets = new EncapsulatedPacket[(int) expectedLength];
     }
 
-    @Nullable
     public EncapsulatedPacket add(EncapsulatedPacket packet, RakNetSession session) {
         Preconditions.checkNotNull(packet, "packet");
         Preconditions.checkArgument(packet.isSplit(), "packet is not split");

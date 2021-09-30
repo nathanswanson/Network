@@ -1,6 +1,6 @@
-package com.nukkitx.network.raknet.util;
+package network.raknet.util;
 
-import com.nukkitx.network.util.Preconditions;
+import network.common.util.Preconditions;
 
 public class IntRange {
     public int start;

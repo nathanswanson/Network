@@ -1,18 +1,15 @@
 package network.raknet;
 
 import com.nukkitx.network.raknet.util.RoundRobinIterator;
-import com.nukkitx.network.util.Bootstraps;
-import com.nukkitx.network.util.DisconnectReason;
-import com.nukkitx.network.util.EventLoops;
+import network.common.util.Bootstraps;
+import network.common.util.DisconnectReason;
+import network.common.util.EventLoops;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.*;
 import io.netty.channel.socket.DatagramPacket;
 import io.netty.util.internal.logging.InternalLogger;
 import io.netty.util.internal.logging.InternalLoggerFactory;
 
-import javax.annotation.Nonnegative;
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -25,7 +22,6 @@ import java.util.function.Consumer;
 
 import static network.raknet.RakNetConstants.*;
 
-@ParametersAreNonnullByDefault
 public class RakNetServer extends RakNet {
     private static final InternalLogger log = InternalLoggerFactory.getInstance(RakNetServer.class);
     final ConcurrentMap<InetSocketAddress, RakNetServerSession> sessionsByAddress = new ConcurrentHashMap<>();
@@ -84,17 +80,15 @@ public class RakNetServer extends RakNet {
         return this.sessionsByAddress.size();
     }
 
-    @Nullable
     public RakNetServerSession getSession(InetSocketAddress address) {
         return this.sessionsByAddress.get(address);
     }
 
-    @Nonnegative
     public int getMaxConnections() {
         return maxConnections;
     }
 
-    public void setMaxConnections(@Nonnegative int maxConnections) {
+    public void setMaxConnections(int maxConnections) {
         this.maxConnections = maxConnections;
     }
 

@@ -1,6 +1,6 @@
 package network.common;
 
-import com.nukkitx.network.util.DisconnectReason;
+import network.common.util.DisconnectReason;
 
 import java.net.InetSocketAddress;
 

@@ -1,7 +1,7 @@
 package network.raknet;
 
-import com.nukkitx.network.util.Bootstraps;
-import com.nukkitx.network.util.Preconditions;
+import network.common.util.Bootstraps;
+import network.common.util.Preconditions;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
@@ -10,8 +10,6 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.socket.DatagramPacket;
 
-import javax.annotation.Nonnegative;
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.net.InetSocketAddress;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ScheduledFuture;
@@ -19,7 +17,6 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-@ParametersAreNonnullByDefault
 public abstract class RakNet implements AutoCloseable {
     final long guid = ThreadLocalRandom.current().nextLong();
     final Bootstrap bootstrap;
@@ -83,12 +80,11 @@ public abstract class RakNet implements AutoCloseable {
         return bootstrap;
     }
 
-    @Nonnegative
     public int getProtocolVersion() {
         return protocolVersion;
     }
 
-    public void setProtocolVersion(@Nonnegative int protocolVersion) {
+    public void setProtocolVersion(int protocolVersion) {
         this.protocolVersion = protocolVersion;
     }
 

@@ -1,4 +1,4 @@
-package com.nukkitx.network.raknet.util;
+package network.raknet.util;
 
 import network.raknet.RakNetUtils;
 

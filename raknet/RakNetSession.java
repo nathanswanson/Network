@@ -1,9 +1,9 @@
 package network.raknet;
 
 import network.common.SessionConnection;
-import com.nukkitx.network.raknet.util.*;
-import com.nukkitx.network.util.DisconnectReason;
-import com.nukkitx.network.util.Preconditions;
+import network.raknet.util.*;
+import network.common.util.DisconnectReason;
+import network.common.util.Preconditions;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
 import io.netty.channel.EventLoop;
@@ -12,12 +12,7 @@ import io.netty.util.ReferenceCountUtil;
 import io.netty.util.internal.PlatformDependent;
 import io.netty.util.internal.logging.InternalLogger;
 import io.netty.util.internal.logging.InternalLoggerFactory;
-import lombok.Getter;
-import lombok.Setter;
 
-import javax.annotation.Nonnegative;
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.net.Inet6Address;
 import java.net.InetSocketAddress;
 import java.util.Queue;
@@ -27,7 +22,6 @@ import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 
 import static network.raknet.RakNetConstants.*;
 
-@ParametersAreNonnullByDefault
 public abstract class RakNetSession implements SessionConnection<ByteBuf> {
     private static final InternalLogger log = InternalLoggerFactory.getInstance(RakNetSession.class);
     static final AtomicIntegerFieldUpdater<RakNetSession> closedUpdater =
@@ -62,8 +56,6 @@ public abstract class RakNetSession implements SessionConnection<ByteBuf> {
     private FastBinaryMinHeap<EncapsulatedPacket> outgoingPackets;
     private long[] outgoingPacketNextWeights;
     private FastBinaryMinHeap<EncapsulatedPacket>[] orderingHeaps;
-    @Getter
-    @Setter
     private volatile RakNetSessionListener listener = null;
     private volatile long currentPingTime = -1;
     private volatile long lastPingTime = -1;
